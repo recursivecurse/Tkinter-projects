@@ -1,4 +1,5 @@
 from tkinter import *
+from functions import *
 from PIL import Image, ImageTk
 
 window=Tk()
@@ -14,14 +15,22 @@ op = StringVar()
 cy = StringVar()
 list = ["Bengaluru","Zurich","Bay Area","Mumbai"]
 
-#Functions are defined as follows
 
-def printt():
-    print("The button is pressed")
+# Controller
 
-def quit():
-    exit()
+def printDetails():
+    a = textfield1.get()
+    b = textfield2.get()
+    c = textfield3.get()
+    d = textfield4.get()
+    e = cy.get()
+    print(a)
+    print(b)
+    print(c)
+    print(d)
+    print(e)
 
+#Setting image using PIL
 image = Image.open("/home/adityamishra/Desktop/icon.png")
 photo = ImageTk.PhotoImage(image)
 label0 = Label(window,image=photo)
@@ -62,7 +71,7 @@ droplist.config(width=20,font=("arial",14,"bold"))
 droplist.place(x=300,y=600)
 
 
-button1 = Button(window,text="Submit",relief=RAISED,font=("arial",14,"bold"))
+button1 = Button(window,text="Submit",relief=RAISED,font=("arial",14,"bold"),command=printDetails)
 button1.place(x=150,y=700)
 button2 = Button(window,text="Quit",relief=RAISED,font=("arial",14,"bold"),command=quit)
 button2.place(x=450,y=700)
