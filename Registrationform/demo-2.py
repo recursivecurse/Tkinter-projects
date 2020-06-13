@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from functions import *
 from PIL import Image, ImageTk
+import sqlite3
 
 #Creating a Window
 window=Tk()
@@ -40,6 +41,28 @@ def printDetails():
     print(d)
     print(e)
     print(f)
+
+#Creating a Function to update the values in the database
+
+def database():
+    firstname = textfield1.get()
+    lastname = textfield2.get()
+    dob      = textfield3.get()
+    occupation = textfield4.get()
+    city = cy.get()
+    gender = var_r.get()
+
+    conn = sqlite3.connect("Form.db")
+    with conn:
+        cursor = conn.cursor()
+
+    cursor.execute("CREATE TABLE IF NOT EXISTS Student(First_Name TEXT,Last_Name TEXT,Date_Of_Birth TEXT,Occupation TEXT,City TEXT,Gender TEXT)")
+    cursor.execute("INSERT INTO Student(First_Name,Last_Name,Date_Of_Birth,Occupation,City,Gender) VALUES(?,?,?,?,?,?)" ,(firstname,lastname,dob,occupation,city,gender))
+    conn.commit()
+
+    messagebox.showinfo("Suceessfully completed", "Your Details have been added succesfully")
+
+
 
 
 #Setting image using PIL
@@ -102,7 +125,7 @@ r2=Radiobutton(window,text="Female",variable=var_r,value="Female",font=("arial",
 r2.place(x=400,y=700)
 
 #Creating buttons
-button1 = Button(window,text="Submit",relief=RAISED,font=("arial",14,"bold"),command=printDetails,bg="#FF0000")
+button1 = Button(window,text="Submit",relief=RAISED,font=("arial",14,"bold"),command=database,bg="#FF0000")
 button1.place(x=100,y=800)
 button2 = Button(window,text="Quit",relief=RAISED,font=("arial",14,"bold"),command=quit,bg="#FF0000")
 button2.place(x=300,y=800)
