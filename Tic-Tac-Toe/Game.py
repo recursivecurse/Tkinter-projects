@@ -9,6 +9,7 @@ class TickTacToe:
         root = Tk()
         root.geometry("500x500")
         root.title("Tic-Tac-Toe")
+        root.resizable(width=FALSE,height=FALSE)
 
         # Creating Variables
         self.player1 = 1
