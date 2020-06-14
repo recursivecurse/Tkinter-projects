@@ -66,7 +66,7 @@ def database():
 
 
 #Setting image using PIL
-image = Image.open("/home/adityamishra/Desktop/icon.png")
+image = Image.open("/home/adityamishra/Desktop/Tkinter/Tkinter-projects/Registrationform/icon.png")
 photo = ImageTk.PhotoImage(image)
 label0 = Label(window,image=photo)
 label0.pack(pady=20)
